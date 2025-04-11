@@ -1,35 +1,47 @@
-# 🧠 EduMind AI
+# 🧠 EduMind AI  
 
-**EduMind AI** is a full-stack educational web app powered by artificial intelligence. It allows users to select a subject and language, then presents 10 AI-generated multiple-choice questions (MCQs) per round. Each question has 4 options (A–D), and the user must select the correct one. The platform is built using **Django** for the backend and **React** for the frontend.
-
----
-
-## 🚀 Features
-
-- 🌍 Choose any **subject** and **language**
-- 🤖 AI-generated **multiple-choice questions**
-- 🔢 10 questions per round with 4 options: **A, B, C, D**
-- ✅ Instant answer feedback
-- 📊 Score summary after each round
-- 🔁 Replay or change subject/language at any time
-- 🌐 Multilingual support (e.g. English, Hindi, etc.)
+**EduMind AI** is an interactive educational platform that generates AI-powered quizzes in multiple languages. Users select a subject and language, then answer 10 dynamically generated multiple-choice questions (MCQs) per round. Built with **Django** (backend) and **React** (frontend).  
+ 
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Key Features  
 
-| Layer     | Technology       |
-|-----------|------------------|
-| Frontend  | React, Tailwind CSS |
-| Backend   | Django, Django REST Framework |
-| AI Engine | OpenAI API (or custom LLM) |
-| Hosting   | Vercel (Frontend), Railway/Render (Backend) |
+- 🌍 **Multilingual Quizzes** – Supports English, Hindi, and more.  
+- 🤖 **AI-Powered Questions** – Generates MCQs using OpenAI/custom LLM.  
+- 📝 **10 Questions per Round** – 4 options (A–D) per question with instant feedback.  
+- 📊 **Performance Analytics** – Score summary after each round.  
+- 🔄 **Flexible Retakes** – Replay quizzes or switch topics anytime.  
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Tech Stack  
 
-EduMindAI/ ├── backend/ # Django backend │ ├── edumind/ # Project settings │ ├── quiz/ # App with models, views, API │ └── requirements.txt # Python dependencies ├── frontend/ # React frontend │ ├── src/ │ │ ├── components/ │ │ ├── pages/ │ │ ├── App.js │ │ └── index.js │ └── package.json # JS dependencies └── README.md
+| **Layer**     | **Technology**                |  
+|--------------|-------------------------------|  
+| Frontend     | React, Tailwind CSS           |  
+| Backend      | Django, Django REST Framework |  
+| AI Engine    | OpenAI API (or custom LLM)    |  
+| Deployment   | Vercel (Frontend), Railway (Backend) |  
+
+---
+
+## 📂 Project Structure  
+
+```plaintext
+EduMindAI/
+├── backend/                  # Django backend
+│   ├── edumind/              # Core settings
+│   ├── quiz/                 # Models, views, API
+│   └── requirements.txt      # Python dependencies
+├── frontend/                 # React frontend
+│   ├── src/
+│   │   ├── components/       # Reusable UI
+│   │   ├── pages/            # Quiz screens
+│   │   ├── App.js
+│   │   └── index.js
+│   └── package.json         # JS dependencies
+└── README.md
 
 
 ---
@@ -56,12 +68,15 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
-OPENAI_API_KEY=your_openai_key
-DJANGO_SECRET_KEY=your_secret
 
-## 📄 License
-This project is licensed under the MIT License.
-Feel free to fork, improve, and contribute!
 
-## ✍️ Author
-Created by @raoshah – AI + Web Developer
+...
+
+
+### 📄 License  
+MIT License. Contribute via PRs!  
+
+### ✍️ Author  
+[@shah_rukh_rao](https://github.com/raoshah) – AI & Full-Stack Developer  
+
+
