@@ -31,6 +31,8 @@ def ai(user_prompt):
       }},
       ...
     ]
+
+    and return only 10 questions and nothing else
     """
 
     response = requests.post(
