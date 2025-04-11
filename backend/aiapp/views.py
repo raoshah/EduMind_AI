@@ -1,15 +1,25 @@
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .ai import ai
+import json
 
-
+@csrf_exempt
 def index(request):
+
+    if request.method == "POST":
+        try:
+            body = json.loads(request.body)
+            prompt = body.get("prompt")
+        except json.JSONDecodeError:
+            return JsonResponse({"message": "Invalid JSON", "status": "error"}, status=400)
+        data = {
+            'message': ai(prompt),
+            'status': 'success',
+            }
+        return JsonResponse(data)
     
     data = {
-    'message': "done",
+    'message': ai("hello"),
     'status': 'success',
-    'items': [
-        {'id': 1, 'name': 'Item 1'},
-        {'id': 2, 'name': 'Item 2'},
-        {'id': 3, 'name': 'Item 3'},
-    ]
     }
     return JsonResponse(data)
