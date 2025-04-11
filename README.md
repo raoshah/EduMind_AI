@@ -70,13 +70,14 @@ python manage.py runserver
 
 
 
-...
+---
 
 
-### 📄 License  
+## 📄 License  
 MIT License. Contribute via PRs!  
 
-### ✍️ Author  
+---
+## ✍️ Author  
 [@shah_rukh_rao](https://github.com/raoshah) – AI & Full-Stack Developer  
 
 
