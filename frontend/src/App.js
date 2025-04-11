@@ -6,19 +6,26 @@ import './App.css';
 
 
 function App() {
-  const [extract, setExtract] = useState("")
-  const [link, setLink] = useState("")
+  const [prompt, setPrompt] = useState("")
   const [data, setData] = useState("")
   const [error, setError] = useState("")
 
   const postLink = async () => {
     {
       try {
-        const response = await fetch('https://aisideback.vercel.app/aiapp/')
+        const response = await fetch('https://edumindai.vercel.app/aiapp/', {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({
+            prompt,
+          })
+        })
         console.log(response)
         const jsonData = await response.json()
         console.log(jsonData)
-        setData(jsonData)
+        setData(jsonData["message"])
         setError("")
       } catch (e) {
         setError(e)
@@ -28,18 +35,13 @@ function App() {
 
   return (
     <div className="App">
+      <div>{error}</div>
+      <div>{data}</div>
       <input
         className='input'
-        value={extract}
-        onChange={(e) => setExtract(e.target.value)}
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
         placeholder='What you want to Extract'
-      />
-
-      <input
-        className='input'
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-        placeholder='Paste here youtube video link'
       />
 
       <button onClick={postLink}>Extract</button>

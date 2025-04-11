@@ -9,7 +9,29 @@ def ai(user_prompt):
         print("❌ API_KEY not found in environment variables.")
         return
 
-    prompt = f"Based on this user prompt, give me answer:\n\n{user_prompt}"
+    prompt = f"""
+    Generate 10 multiple-choice questions for the subject of {user_prompt} in the English language. Each question must have:
+
+    - 1 question text
+    - 4 options labeled A, B, C, D
+    - 1 correct answer key (A, B, C, or D)
+
+    Return the result in this JSON format:
+
+    [
+      {{
+        "question": "What is the capital of France?",
+        "options": {{
+          "A": "Berlin",
+          "B": "London",
+          "C": "Paris",
+          "D": "Madrid"
+        }},
+        "answer": "C"
+      }},
+      ...
+    ]
+    """
 
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
