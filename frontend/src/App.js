@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_URL } from './constants';
 import './App.css';
 
 
@@ -13,7 +14,7 @@ function App() {
   const postLink = async () => {
     {
       try {
-        const response = await fetch('https://edumindai.vercel.app/aiapp/', {
+        const response = await fetch(API_URL+'/aiapp/', {
           method:'POST',
           headers:{
             'Content-Type':'application/json'

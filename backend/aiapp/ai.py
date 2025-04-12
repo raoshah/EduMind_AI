@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-import os, requests
+import os, requests, json
 
 load_dotenv()
 
@@ -52,5 +52,7 @@ def ai(user_prompt):
 
    
     result = response.json()
-    return result["choices"][0]["message"]["content"]
+    data = result["choices"][0]["message"]["content"]
+
+    return json.loads(data)
 
