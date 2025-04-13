@@ -4,6 +4,7 @@ import os, requests, json
 load_dotenv()
 
 def ai(user_prompt):
+    print(user_prompt)
     api_key = os.environ.get('API_KEY')
     if not api_key:
         print("❌ API_KEY not found in environment variables.")
@@ -32,7 +33,7 @@ def ai(user_prompt):
       ...
     ]
 
-    and return only 10 questions and nothing else
+    and return only 10 questions in JSON format and nothing else not even any tag word like json
     """
 
     response = requests.post(
@@ -52,7 +53,10 @@ def ai(user_prompt):
 
    
     result = response.json()
+    print(result)
     data = result["choices"][0]["message"]["content"]
-
-    return json.loads(data)
+    print(data)
+    result_data = json.loads(data)
+    print(result_data)
+    return result_data
 

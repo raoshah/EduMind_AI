@@ -1,54 +1,52 @@
 import { useState } from 'react';
-import { API_URL } from './constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { getQuestions } from './redux/quizSlice';
+import Quiz from './components/QuizScreen';
 import './App.css';
 
-
-
-
-
 function App() {
-  const [prompt, setPrompt] = useState("")
-  const [data, setData] = useState("")
-  const [error, setError] = useState("")
+  const [prompt, setPrompt] = useState("");
+  const [index, setIndex] = useState(0)
 
-  const postLink = async () => {
-    {
-      try {
-        const response = await fetch(API_URL+'/aiapp/', {
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json'
-          },
-          body: JSON.stringify({
-            prompt,
-          })
-        })
-        console.log(response)
-        const jsonData = await response.json()
-        console.log(jsonData)
-        setData(jsonData["message"])
-        setError("")
-      } catch (e) {
-        setError(e)
-      }
+  const { loading, data, error } = useSelector((state) => state.quizSlice);
+  const dispatch = useDispatch();
+
+  const handlePrompt = () => {
+    dispatch(getQuestions({ prompt }));
+  };
+
+  const nextQue = () => {
+    if(data.length - 1 > index) {
+      setIndex((prev) => prev + 1)
+    } else {
+      setIndex(0)
     }
+   
   }
-
+ 
   return (
     <div className="App">
-      <div>{error}</div>
-      <div>{data}</div>
       <input
-        className='input'
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        placeholder='What you want to Extract'
+        placeholder="Enter topic"
+        className="input"
       />
+      <button onClick={handlePrompt}>Get Questions</button>
 
-      <button onClick={postLink}>Extract</button>
+      {loading && <p>Loading...</p>}
+      {error && <p className="error">{error}</p>}
 
+      {data.length > 0 && (
+        <Quiz 
+        questionData={data[index]}
+        next={nextQue}
+        index={index}
+         />
+      )}
     </div>
   );
 }
 
 export default App;
+

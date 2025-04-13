@@ -1,0 +1,24 @@
+/* QuizScreen.css */
+.option {
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin: 6px 0;
+    border-radius: 5px;
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected {
+    background-color: #dbeafe;
+  }
+  
+  .correct {
+    background-color: #a7f3d0;
+  }
+  
+  .wrong {
+    background-color: #fecaca;
+  }
+  

@@ -56,7 +56,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://sideai.vercel.app/", 
+    "https://sideai.vercel.app", 
 ]
 
 ROOT_URLCONF = 'backend.urls'
