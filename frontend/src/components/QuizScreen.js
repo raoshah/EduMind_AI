@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import './QuizScreen.css';
 
-const Quiz = ({ questionData, next, index }) => {
+const Quiz = ({ questionData, next, index, onAnswer }) => {
   const [selected, setSelected] = useState(null)
   const [confirmed, setConfirmed] = useState(false);
 
@@ -9,14 +9,24 @@ const Quiz = ({ questionData, next, index }) => {
     if (!confirmed) setSelected(option);
   }
 
+  const handleConfirm = () => {
+    if (selected) {
+      setConfirmed(true);
+      onAnswer(selected === questionData.answer); 
+    }
+  };
+
 
   const getStyle = (option) => {
-    if (selected === option) return "wrong";
-    return "correct"
+    if (!confirmed) return selected === option ? "selected" : "";
+    if (option === questionData.answer) return "correct";
+    if (option === selected) return "wrong";
+    return "";
   };
 
   useEffect(() => {
     setSelected(null)
+    setConfirmed(false);
   },[index])
 
   return (
@@ -37,6 +47,9 @@ const Quiz = ({ questionData, next, index }) => {
       ))}
 
       <button onClick={next}>Next</button>
+      {!confirmed &&  (
+        <button onClick={handleConfirm} disabled={!selected}>Confirm</button>
+      )}
 
     </div>
   );
