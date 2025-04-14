@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f8fbff, #e1ecf7);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .input {

@@ -29,10 +29,10 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
     setConfirmed(false);
   },[index])
 
-  return (
+  return ( <div className="quizbody">
     <div className="quizDiv">
 
-      <h1><b>Question: </b> {questionData.question}</h1>
+      <h1 className="question" ><b>{index}.</b> {questionData.question}</h1>
 
       {Object.entries(questionData.options).map(([key, value]) => (
         <p
@@ -51,6 +51,7 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
         <button onClick={handleConfirm} disabled={!selected}>Confirm</button>
       )}
 
+    </div>
     </div>
   );
 };
