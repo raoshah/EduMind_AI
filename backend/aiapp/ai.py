@@ -11,30 +11,31 @@ def ai(user_prompt):
         return
 
     prompt = f"""
-    Generate 10 multiple-choice questions for the subject of {user_prompt} in the English language. Each question must have:
+Generate 10 multiple-choice questions for the subject of {user_prompt}  in the English language for user id=1 if same user ask about same topic again return unique questions every time . Each question must include:
 
-    - 1 question text
-    - 4 options labeled A, B, C, D
-    - 1 correct answer key (A, B, C, or D)
+- A question text
+- Four options labeled A, B, C, and D
+- One correct answer key (A, B, C, or D)
+- A explanation for the correct answer
 
-    Return the result in this JSON format:
+Return the result in the following JSON format and nothing else — no tags, headers, or additional text even dont use json word and dont use any additional line:
 
-    [
-      {{
-        "question": "What is the capital of France?",
-        "options": {{
-          "A": "Berlin",
-          "B": "London",
-          "C": "Paris",
-          "D": "Madrid"
-        }},
-        "answer": "C"
-      }},
-      ...
-    ]
+[
+  {{
+    "question": "What is the capital of France?",
+    "options": {{
+      "A": "Berlin",
+      "B": "London",
+      "C": "Paris",
+      "D": "Madrid"
+    }},
+    "answer": "C",
+    "explanation": "Paris is the capital city of France."
+  }},
+  ...
+]
+"""
 
-    and return only 10 questions in JSON format and nothing else not even any tag word like json
-    """
 
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",

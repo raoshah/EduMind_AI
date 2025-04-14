@@ -19,7 +19,7 @@ def index(request):
         return JsonResponse(data)
     
     data = {
-    'message': ai("hello"),
+    'message': ai("india"),
     'status': 'success',
     }
     return JsonResponse(data)
