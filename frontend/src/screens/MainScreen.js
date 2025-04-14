@@ -34,7 +34,7 @@ const MainScreen = () => {
                 <input
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    placeholder="Enter topic"
+                    placeholder="Enter any topic"
                     className="styled-input"
                 />
                 <button onClick={handlePrompt} className="input-button">Get Questions</button>
