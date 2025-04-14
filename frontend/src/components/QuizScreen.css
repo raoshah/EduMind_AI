@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 10px;
   min-height: 60vh;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .option:hover {
-  background-color: #d6d6d6;
+  background-color: #287eff;
 }
 
 .selected {

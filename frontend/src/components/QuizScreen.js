@@ -16,7 +16,6 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
     }
   };
 
-
   const getStyle = (option) => {
     if (!confirmed) return selected === option ? "selected" : "";
     if (option === questionData.answer) return "correct";
@@ -46,19 +45,16 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
         </p>
       ))}
       {confirmed && (<div class="explanation">
-    <strong>Explanation:</strong> {questionData.explanation}
-    </div>) }
+        <strong>Explanation:</strong> {questionData.explanation}
+      </div>)}
 
+      <div className="buttonDiv">
+        {confirmed && index < 9  && (<button className="stylish-btn" onClick={next}>Next</button>)}
 
-    <div className="buttonDiv">
-      {confirmed && (<button className="stylish-btn" onClick={next}>Next</button>) }
-    
-      {!confirmed && (
-        <button className="stylish-btn" onClick={handleConfirm} disabled={!selected}>Confirm</button>
-      )}
-    </div>
-      
-   
+        {!confirmed && (
+          <button className="stylish-btn" onClick={handleConfirm} disabled={!selected}>Confirm</button>
+        )}
+      </div>
     </div>
   </div>
   );
