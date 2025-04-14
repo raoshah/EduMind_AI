@@ -18,7 +18,7 @@ Generate 10 multiple-choice questions for the subject of {user_prompt}  in the E
 - One correct answer key (A, B, C, or D)
 - A explanation for the correct answer
 
-Return the result in the following JSON format and nothing else — no tags, headers, or additional text even dont use json word and dont use any additional line:
+Return the result in the following JSON format and nothing else — no tags, headers, or additional text even dont use json word or for user word and dont use any additional line return only following JSON format :
 
 [
   {{
