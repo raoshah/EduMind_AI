@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import Lottie from 'lottie-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions } from '../redux/quizSlice';
 import Quiz from '../components/Quiz';
 import './MainScreen.css'
+import animationData from './Animation -Lottie.json';
 
 const MainScreen = () => {
     const [prompt, setPrompt] = useState("");
@@ -40,9 +42,18 @@ const MainScreen = () => {
                 <button onClick={handlePrompt} className="input-button">Get Questions</button>
             </div>
 
+            
             {data.length > 0 && (<h2 className="score" >Your Score: {score}/{data.length}</h2>)}
 
-            {loading && <p>Loading...</p>}
+            {loading && <div className="loading-container">
+                <p className="loading-text">Loading...</p>
+                <Lottie
+                    animationData={animationData}
+                    loop={true}
+                    className="loading-animation"
+                />
+            </div>}
+            
             {error && <p className="error">{error}</p>}
 
             {data.length > 0 && (
