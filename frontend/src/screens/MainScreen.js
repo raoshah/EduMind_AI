@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions } from '../redux/quizSlice';
-import Quiz from '../components/QuizScreen';
+import Quiz from '../components/Quiz';
 import './MainScreen.css'
 
 const MainScreen = () => {
@@ -37,24 +37,10 @@ const MainScreen = () => {
                     placeholder="Enter topic"
                     className="styled-input"
                 />
-                <button onClick={handlePrompt} className="input-button">
-                    Get Questions
-                </button>
+                <button onClick={handlePrompt} className="input-button">Get Questions</button>
             </div>
-            {data.length > 0 && (
-                <h2 style={{
-                    backgroundColor: '#e0f2fe',
-                    color: '#0c4a6e',
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    textAlign: 'center',
-                    fontSize: '16px',
-                    marginTop: '16px',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.08)'
-                }}>
-                    Your Score: {score}/{data.length}
-                </h2>
-            )}
+
+            {data.length > 0 && (<h2 className="score" >Your Score: {score}/{data.length}</h2>)}
 
             {loading && <p>Loading...</p>}
             {error && <p className="error">{error}</p>}

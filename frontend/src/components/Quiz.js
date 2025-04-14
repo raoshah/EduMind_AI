@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import './QuizScreen.css';
+import './Quiz.css';
 
 const Quiz = ({ questionData, next, index, onAnswer }) => {
   const [selected, setSelected] = useState(null)
@@ -34,28 +34,22 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
       <h1 className="question" ><b>{index + 1}.</b> {questionData.question}</h1>
 
       {Object.entries(questionData.options).map(([key, value]) => (
-        <p
-          onClick={() => handleSelect(key)}
-          key={key}
-          className={`option ${getStyle(key)}`}
-          style={{ cursor: 'pointer' }}
-        >
 
+        <p onClick={() => handleSelect(key)} key={key} className={`option ${getStyle(key)}`} style={{ cursor: 'pointer' }}>
           <b>{key}: </b>{value}
         </p>
+        
       ))}
-      {confirmed && (<div class="explanation">
-        <strong>Explanation:</strong> {questionData.explanation}
-      </div>)}
+
+      {confirmed && (<div class="explanation"> <strong>Explanation:</strong> {questionData.explanation} </div>)}
 
       <div className="buttonDiv">
-        {confirmed && index < 9  && (<button className="stylish-btn" onClick={next}>Next</button>)}
-
-        {!confirmed && (
-          <button className="stylish-btn" onClick={handleConfirm} disabled={!selected}>Confirm</button>
-        )}
+        {confirmed && index < 9 && (<button className="stylish-btn" onClick={next}>Next</button>)}
+        {!confirmed && (<button className="stylish-btn" onClick={handleConfirm} disabled={!selected}>Confirm</button>)}
       </div>
+
     </div>
+
   </div>
   );
 };
