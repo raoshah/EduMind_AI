@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Lottie from 'lottie-react';
+import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions } from '../redux/quizSlice';
 import Quiz from '../components/Quiz';
@@ -31,7 +32,12 @@ const MainScreen = () => {
     };
 
     return (
-        <>
+        <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        >
             <div className="input-wrapper">
                 <input
                     value={prompt}
@@ -42,7 +48,7 @@ const MainScreen = () => {
                 <button onClick={handlePrompt} className="input-button">Get Questions</button>
             </div>
 
-            
+
             {data.length > 0 && (<h2 className="score" >Your Score: {score}/{data.length}</h2>)}
 
             {loading && <div className="loading-container">
@@ -53,7 +59,7 @@ const MainScreen = () => {
                     className="loading-animation"
                 />
             </div>}
-            
+
             {error && <p className="error">{error}</p>}
 
             {data.length > 0 && (
@@ -64,7 +70,8 @@ const MainScreen = () => {
                     onAnswer={handleAnswer}
                 />
             )}
-        </>
+        </motion.div>
+
     )
 }
 
