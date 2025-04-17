@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Lottie from 'lottie-react';
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,6 +15,31 @@ const MainScreen = () => {
 
     const { loading, data, error } = useSelector((state) => state.quizSlice);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            const postData = async () => {
+                try {
+                    const response = await axios.post('http://localhost:8000/aiapi/save-questions/', {
+                        topic: prompt,
+                        data: data
+                      },
+                      {headers: {
+                        'Content-Type': 'application/json',
+                      }}
+                        );
+                
+                      console.log(response.data);
+                   
+                    } catch (error) {
+                      console.error("Error submitting questions:", error);
+                    }
+            };
+    
+            postData();
+        }
+    }, [data, prompt]);
+
 
     const handlePrompt = () => {
         dispatch(getQuestions({ prompt }));

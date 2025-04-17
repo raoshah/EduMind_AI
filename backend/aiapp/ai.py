@@ -11,14 +11,15 @@ def ai(user_prompt):
         return
 
     prompt = f"""
-Generate 10 multiple-choice questions for the subject of {user_prompt}  in the English language for user id=1 if same user ask about same topic again return unique questions every time . Each question must include:
+Generate 10 multiple-choice questions based on the subject: {user_prompt}, in the English language. If the same topic is asked again, return unique questions every time. Each question must include:
 
 - A question text
 - Four options labeled A, B, C, and D
 - One correct answer key (A, B, C, or D)
-- A explanation for the correct answer
+- An explanation for the correct answer
+- The correct subject name as "subject" based on the question content
 
-Return the result in the following JSON format and nothing else — no tags, headers, or additional text even dont use json word dont mention anything about user and dont use any additional line just return only following JSON format because i use this in my code if you return anything alse i will get error:
+Return the result in the exact following JSON format and nothing else — no tags, headers, comments, or extra lines. Do not use the word "JSON", do not mention anything about the user, and do not add any extra text. Return only:
 
 [
   {{
@@ -30,11 +31,13 @@ Return the result in the following JSON format and nothing else — no tags, hea
       "D": "Madrid"
     }},
     "answer": "C",
-    "explanation": "Paris is the capital city of France."
+    "explanation": "Paris is the capital city of France.",
+    "subject": "France"
   }},
   ...
 ]
 """
+
 
 
     response = requests.post(

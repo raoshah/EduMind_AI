@@ -27,6 +27,7 @@ function App() {
   return (
     <Router>
       <AnimatedRoutes />
+      <div style={{marginTop:"10%"}}></div>
       <BottomNav />
     </Router>
   );
