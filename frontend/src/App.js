@@ -5,7 +5,8 @@ import BottomNav from "./components/BottomNav";
 import MainScreen from './screens/MainScreen';
 import Profile from "./screens/ProfileScreen";
 import Setting from "./screens/SettingScreen";
-import About from "./screens/AboutScreen";
+import Topics from "./screens/TopicsScreen";
+import Topic from "./components/Topic";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -16,7 +17,9 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<MainScreen />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/setting" element={<Setting />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/topics" element={<Topics />} />
+        <Route path="/topic/:topicId" element={<Topic />} />
+        
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </AnimatePresence>

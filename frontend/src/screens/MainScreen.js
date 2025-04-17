@@ -7,6 +7,7 @@ import { getQuestions } from '../redux/quizSlice';
 import Quiz from '../components/Quiz';
 import './MainScreen.css'
 import animationData from './Animation -Lottie.json';
+import { API_URL2 } from '../constants';
 
 const MainScreen = () => {
     const [prompt, setPrompt] = useState("");
@@ -20,10 +21,7 @@ const MainScreen = () => {
         if (data && data.length > 0) {
             const postData = async () => {
                 try {
-                    const response = await axios.post('http://localhost:8000/aiapi/save-questions/', {
-                        topic: prompt,
-                        data: data
-                      },
+                    const response = await axios.post(`${API_URL2}/aiapi/save-questions/`, data,
                       {headers: {
                         'Content-Type': 'application/json',
                       }}
@@ -38,7 +36,7 @@ const MainScreen = () => {
     
             postData();
         }
-    }, [data, prompt]);
+    }, [data]);
 
 
     const handlePrompt = () => {
