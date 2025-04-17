@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './Quiz.css';
 
-const Quiz = ({ questionData, next, index, onAnswer }) => {
+const Quiz = ({ questionData, next, index, onAnswer, quizLength }) => {
   const [selected, setSelected] = useState(null)
   const [confirmed, setConfirmed] = useState(false);
 
@@ -31,7 +31,7 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
   return (<div className="quizbody">
     <div className="quizDiv">
 
-      <h1 className="question" ><b>{index + 1}.</b> {questionData.question}</h1>
+      <h2 className="question" ><b>{index + 1}.</b>  {questionData.question}</h2>
 
       {Object.entries(questionData.options).map(([key, value]) => (
 
@@ -44,7 +44,7 @@ const Quiz = ({ questionData, next, index, onAnswer }) => {
       {confirmed && (<div class="explanation"> <strong>Explanation:</strong> {questionData.explanation} </div>)}
 
       <div className="buttonDiv">
-        {confirmed && index < 9 && (<button className="stylish-btn" onClick={next}>Next</button>)}
+        {confirmed && index < quizLength - 1 && (<button className="stylish-btn" onClick={next}>Next</button>)}
         {!confirmed && (<button className="stylish-btn" onClick={handleConfirm} disabled={!selected}>Confirm</button>)}
       </div>
 

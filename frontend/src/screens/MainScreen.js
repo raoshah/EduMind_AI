@@ -76,7 +76,6 @@ const MainScreen = () => {
             {data.length > 0 && (<h2 className="score" >Your Score: {score}/{data.length}</h2>)}
 
             {loading && <div className="loading-container">
-                <p className="loading-text">Loading...</p>
                 <Lottie
                     animationData={animationData}
                     loop={true}
@@ -88,10 +87,12 @@ const MainScreen = () => {
 
             {data.length > 0 && (
                 <Quiz
+                    key={index}
                     questionData={data[index]}
                     next={nextQue}
                     index={index}
                     onAnswer={handleAnswer}
+                    quizLength={data.length}
                 />
             )}
         </motion.div>

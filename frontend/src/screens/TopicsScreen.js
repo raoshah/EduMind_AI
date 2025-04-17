@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import { API_URL2 } from "../constants";
+import { Link } from "react-router-dom";
+import './TopicsScreen.css';
+import Lottie from 'lottie-react';
+import animationData from './Animation -Lottie.json';
+
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
@@ -24,28 +29,34 @@ const Topics = () => {
         };
 
         fetchTopics();
-    }
-    , []); 
+    }, []);
 
 
     return (
-        <div>
-            {loading && <p>Loading...</p>}
+        <div className="topics-container">
+            {loading && <div className="loading-container">
+                <Lottie
+                    animationData={animationData}
+                    loop={true}
+                    className="loading-animation"
+                />
+            </div>}
             {error && <p>Error: {error.message}</p>}
             {!loading && !error && (
                 <div>
                     <h1>Topics</h1>
                     <ul>
                         {topics && topics.map((topic, index) => (
-                            <li key={index}>{topic}</li>
+                            <li key={index}>
+                                <Link to={`/topic/${topic}`}>{topic}</Link>
+                            </li>
                         ))}
                     </ul>
                 </div>
             )}
-            
         </div>
     );
 }
-    
+
 
 export default Topics;
