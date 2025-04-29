@@ -17,7 +17,7 @@ const Topic = () => {
     useEffect(() => {
         const fetchTopics = async () => {
             try {
-                const response = await fetch(`${API_URL2}/aiapi/get-questions/${topicId}/`);
+                const response = await fetch(`${API_URL2}/aiapi/get-questions/?topic=${encodeURIComponent(topicId)}`);
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
