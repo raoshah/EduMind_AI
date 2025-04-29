@@ -3,7 +3,7 @@ import os, requests, json
 
 load_dotenv()
 
-def ai(user_prompt):
+def ai(user_prompt, language):
     print(user_prompt)
     api_key = os.environ.get('API_KEY')
     if not api_key:
@@ -11,7 +11,7 @@ def ai(user_prompt):
         return
 
     prompt = f"""
-Generate 10 multiple-choice questions based on the subject: {user_prompt}, in the English language. If the same topic is asked again, return unique questions every time. Each question must include:
+Generate 10 multiple-choice questions based on the user prompt: {user_prompt}, in the {language} language. If the same topic is asked again, return unique questions every time. Each question must include:
 
 - A question text
 - Four options labeled A, B, C, and D

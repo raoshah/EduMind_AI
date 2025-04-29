@@ -11,8 +11,26 @@ import { API_URL2 } from '../constants';
 
 const MainScreen = () => {
     const [prompt, setPrompt] = useState("");
+    const [language, setLanguage] = useState("English");
     const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
+
+    const languages = [
+        "English",
+        "Hindi",
+        "Roman Hindi",
+        "Urdu",
+        "Roman Urdu",
+        "Spanish",
+        "French",
+        "German",
+        "Chinese",
+        "Arabic",
+        "Bengali",
+        "Russian",
+        "Japanese"
+    ];
+
 
     const { loading, data, error } = useSelector((state) => state.quizSlice);
     const dispatch = useDispatch();
@@ -22,25 +40,27 @@ const MainScreen = () => {
             const postData = async () => {
                 try {
                     const response = await axios.post(`${API_URL2}/aiapi/save-questions/`, data,
-                      {headers: {
-                        'Content-Type': 'application/json',
-                      }}
-                        );
-                
-                      console.log(response.data);
-                   
-                    } catch (error) {
-                      console.error("Error submitting questions:", error);
-                    }
+                        {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        }
+                    );
+
+                    console.log(response.data);
+
+                } catch (error) {
+                    console.error("Error submitting questions:", error);
+                }
             };
-    
+
             postData();
         }
     }, [data]);
 
 
     const handlePrompt = () => {
-        dispatch(getQuestions({ prompt }));
+        dispatch(getQuestions({ prompt, language }));
         setIndex(0);
         setScore(0);
     };
@@ -57,10 +77,10 @@ const MainScreen = () => {
 
     return (
         <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        transition={{ duration: 0.3 }}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3 }}
         >
             <div className="input-wrapper">
                 <input
@@ -71,7 +91,22 @@ const MainScreen = () => {
                 />
                 <button onClick={handlePrompt} className="input-button">Get Questions</button>
             </div>
-
+            
+            <div>
+                choose language: :
+            <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="styled-select"
+            >
+                <option value="" disabled>Select a language</option>
+                {languages.map((lang) => (
+                    <option key={lang} value={lang}>
+                        {lang}
+                    </option>
+                ))}
+            </select>
+            </div>
 
             {data.length > 0 && (<h2 className="score" >Your Score: {score}/{data.length}</h2>)}
 

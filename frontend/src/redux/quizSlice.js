@@ -4,9 +4,9 @@ import { API_URL } from "../constants";
 
 export const getQuestions = createAsyncThunk(
     'questions/getQuestions',
-    async (prompt, {rejectedWithValue}) => {
+    async ({prompt, language}, {rejectedWithValue}) => {
         try {
-            const response = await axios.post(`${API_URL}/aiapp/`, prompt,{
+            const response = await axios.post(`${API_URL}/aiapp/`, {prompt, language},{
                 headers:{
                     'Content-Type': 'application/json'
                 },

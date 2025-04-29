@@ -10,10 +10,11 @@ def index(request):
         try:
             body = json.loads(request.body)
             prompt = body.get("prompt")
+            language = body.get("language")
         except json.JSONDecodeError:
             return JsonResponse({"message": "Invalid JSON", "status": "error"}, status=400)
         data = {
-            'message': ai(prompt),
+            'message': ai(prompt, language),
             'status': 'success',
             }
         return JsonResponse(data)
