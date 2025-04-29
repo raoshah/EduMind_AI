@@ -18,19 +18,7 @@ const MainScreen = () => {
     const languages = [
         "English",
         "Hindi",
-        "Roman Hindi",
-        "Urdu",
-        "Roman Urdu",
-        "Spanish",
-        "French",
-        "German",
-        "Chinese",
-        "Arabic",
-        "Bengali",
-        "Russian",
-        "Japanese"
     ];
-
 
     const { loading, data, error } = useSelector((state) => state.quizSlice);
     const dispatch = useDispatch();

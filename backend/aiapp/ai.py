@@ -6,38 +6,40 @@ load_dotenv()
 def ai(user_prompt, language):
     print(user_prompt)
     api_key = os.environ.get('API_KEY')
-    if not api_key:
-        print("❌ API_KEY not found in environment variables.")
-        return
 
     prompt = f"""
-Generate 10 multiple-choice questions based on the user prompt: {user_prompt}, in the {language} language. If the same topic is asked again, return unique questions every time. Each question must include:
+Generate 10 multiple-choice questions strictly in the {language} language based on the topic: "{user_prompt}". 
+Ensure the style is suitable for competitive exams (e.g., UPSC, SSC, NEET, Banking).
 
-- A question text
-- Four options labeled A, B, C, and D
+If the same topic is asked again, always return new, unique questions.
+
+Each question must include:
+- A question text (in {language})
+- Four options labeled A, B, C, and D (in {language})
 - One correct answer key (A, B, C, or D)
-- An explanation for the correct answer
-- The correct subject name as "subject" based on the question content
+- A detailed explanation for the correct answer (in {language})
+- A subject field named "subject" — the subject name must also be in {language}
 
-Return the result in the exact following JSON format and nothing else — no tags, headers, comments, or extra lines. Do not use the word "JSON", do not mention anything about the user, and do not add any extra text. Return only:
+All parts of the output — including subject — must be entirely in {language}.
+
+Return the output in this **exact JSON format only** — no comments, no markdown, no extra text:
 
 [
   {{
-    "question": "What is the capital of France?",
+    "question": "भारतीय संविधान में मूल कर्तव्यों का उल्लेख कहाँ किया गया है?",
     "options": {{
-      "A": "Berlin",
-      "B": "London",
-      "C": "Paris",
-      "D": "Madrid"
+      "A": "अनुच्छेद 14",
+      "B": "अनुच्छेद 51A",
+      "C": "अनुच्छेद 32",
+      "D": "अनुच्छेद 21"
     }},
-    "answer": "C",
-    "explanation": "Paris is the capital city of France.",
-    "subject": "France"
+    "answer": "B",
+    "explanation": "मूल कर्तव्यों का उल्लेख संविधान के अनुच्छेद 51A में किया गया है जो 42वें संविधान संशोधन द्वारा जोड़े गए थे।",
+    "subject": "राजव्यवस्था"
   }},
   ...
 ]
 """
-
 
 
     response = requests.post(
