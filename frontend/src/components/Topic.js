@@ -44,15 +44,16 @@ const Topic = () => {
     }
 
     return (
-        <div className="topic">
-            <h1>{topicId}</h1>
-            {loading && <div className="loading-container">
+        <>
+        {loading && <div className="loading-container">
                 <Lottie
                     animationData={animationData}
                     loop={true}
                     className="loading-animation"
                 />
-            </div>}
+        </div>}
+        <div className="topic">
+            <h1>{topicId}</h1>
             {error && <p>Error: {error.message}</p>}
             {!loading && !error && (
                 <div>
@@ -71,6 +72,7 @@ const Topic = () => {
 
             )}
         </div>
+        </>
     )
 }
 

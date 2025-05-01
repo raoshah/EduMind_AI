@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import './Quiz.css';
 
 const Quiz = ({ questionData, next, index, onAnswer, quizLength }) => {
@@ -28,7 +29,14 @@ const Quiz = ({ questionData, next, index, onAnswer, quizLength }) => {
     setConfirmed(false);
   }, [index])
 
-  return (<div className="quizbody">
+  return (
+    <motion.div
+    initial={{ scale: 0.8, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    exit={{ scale: 0.8, opacity: 0 }}
+    transition={{ duration: 0.3 }}
+> 
+  <div className="quizbody">
     <div className="quizDiv">
 
       <h2 className="question" ><b>{index + 1}.</b>  {questionData.question}</h2>
@@ -51,6 +59,7 @@ const Quiz = ({ questionData, next, index, onAnswer, quizLength }) => {
     </div>
 
   </div>
+  </motion.div>
   )
 };
 

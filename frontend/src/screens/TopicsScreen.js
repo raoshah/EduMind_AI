@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import './TopicsScreen.css';
 import Lottie from 'lottie-react';
 import animationData from './Animation -Lottie.json';
-
+import { motion } from "framer-motion";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
@@ -33,7 +33,12 @@ const Topics = () => {
 
 
     return (
-        <div className="topics-container">
+        <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+        >
             {loading && <div className="loading-container">
                 <Lottie
                     animationData={animationData}
@@ -41,20 +46,22 @@ const Topics = () => {
                     className="loading-animation"
                 />
             </div>}
-            {error && <p>Error: {error.message}</p>}
-            {!loading && !error && (
-                <div>
-                    <h1>Topics</h1>
-                    <ul>
-                        {topics && topics.map((topic, index) => (
-                            <li key={index}>
-                                <Link to={`/topic/${topic}`}>{topic}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
+            <div className="topics-container">
+                {error && <p>Error: {error.message}</p>}
+                {!loading && !error && (
+                    <div>
+                        <h1>Topics</h1>
+                        <ul>
+                            {topics && topics.map((topic, index) => (
+                                <li key={index}>
+                                    <Link to={`/topic/${topic}`}>{topic}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
+        </motion.div>
     );
 }
 
