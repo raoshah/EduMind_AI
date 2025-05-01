@@ -20,7 +20,7 @@ const Quiz = ({ questionData, next, index, onAnswer, quizLength }) => {
     if (!confirmed) return selected === option ? "selected" : "";
     if (option === questionData.answer) return "correct";
     if (option === selected) return "wrong";
-    return "";
+    return ""
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Quiz = ({ questionData, next, index, onAnswer, quizLength }) => {
     </div>
 
   </div>
-  );
+  )
 };
 
 export default Quiz;

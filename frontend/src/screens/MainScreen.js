@@ -75,26 +75,23 @@ const MainScreen = () => {
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     placeholder="Enter any topic"
-                    className="styled-input"
                 />
-                <button onClick={handlePrompt} className="input-button">Get Questions</button>
+                <div>
+                    <select
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                    >
+                        <option value="" disabled>Select a language</option>
+                        {languages.map((lang) => (
+                            <option key={lang} value={lang}>
+                                {lang}
+                            </option>
+                        ))}
+                    </select>
+                    <button onClick={handlePrompt}>Get Questions</button>
+                </div>
             </div>
-            
-            <div>
-                choose language: :
-            <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="styled-select"
-            >
-                <option value="" disabled>Select a language</option>
-                {languages.map((lang) => (
-                    <option key={lang} value={lang}>
-                        {lang}
-                    </option>
-                ))}
-            </select>
-            </div>
+
 
             {data.length > 0 && (<h2 className="score" >Your Score: {score}/{data.length}</h2>)}
 
@@ -108,16 +105,20 @@ const MainScreen = () => {
 
             {error && <p className="error">{error}</p>}
 
-            {data.length > 0 && (
-                <Quiz
+            {data.length > 0? <Quiz
                     key={index}
                     questionData={data[index]}
                     next={nextQue}
                     index={index}
                     onAnswer={handleAnswer}
                     quizLength={data.length}
-                />
-            )}
+                /> :
+                <div className="hero-section">
+                <h1>Master Any Topic with AI-Powered MCQs</h1>
+                <p>Just type a topic and instantly get 10 smart questions to test your knowledge!</p>
+              </div>
+                        
+            }
         </motion.div>
 
     )

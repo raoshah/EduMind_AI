@@ -34,7 +34,7 @@ const Topic = () => {
     }, [topicId]);
 
     const handleAnswer = (correct) => {
-        if (correct) setScore(prev => prev + 1);
+        if (correct) setScore(prev => prev + 1)
     };
 
     const nextQue = () => {
@@ -69,9 +69,9 @@ const Topic = () => {
                     </ul>
                 </div>
 
-            )};
+            )}
         </div>
-    );
+    )
 }
 
 export default Topic;
