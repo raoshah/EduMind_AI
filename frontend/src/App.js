@@ -7,6 +7,7 @@ import Profile from "./screens/ProfileScreen";
 import Setting from "./screens/SettingScreen";
 import Topics from "./screens/TopicsScreen";
 import Topic from "./components/Topic";
+import Footer from "./components/Footer"
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
     <Router>
       <AnimatedRoutes />
       <div style={{marginTop:"10%"}}></div>
+      <Footer/>
       <BottomNav />
     </Router>
   );
